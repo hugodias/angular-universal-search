@@ -17,8 +17,7 @@ universalSearchApp.controller('universalSearchCtrl', function($scope, $resource,
     $scope.searchYoutube = function(){
       var q = $scope.searchTerm;
 
-      //YoutubeCache.get(q)
-      //YoutubeCache.put(q,$scope.youtubeResults); 
+      // See services.js
       $scope.youtubeResults = YoutubeService.get(q);
     }
 
