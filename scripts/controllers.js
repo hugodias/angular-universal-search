@@ -22,7 +22,7 @@ universalSearchApp.controller('universalSearchCtrl', function($scope, $resource,
     }
 
     $scope.playVideo = function(item) {
-        var vid = $scope.youtube_parser(item.link[0].href);
+        var vid = youtube_parser(item.link[0].href);
         $scope.item_title = item.title.$t;
         $scope.item_thumb = item.media$group.media$thumbnail[3].url;
         $scope.item_iframe = "http://www.youtube.com/embed/" + vid;
@@ -30,7 +30,7 @@ universalSearchApp.controller('universalSearchCtrl', function($scope, $resource,
         $('#VideoModal').modal('show');
     }
 
-    $scope.youtube_parser = function(url){
+    function youtube_parser(url){
         var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
         var match = url.match(regExp);
         if (match&&match[7].length==11){
