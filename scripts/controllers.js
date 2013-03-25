@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-universalSearchApp.controller('universalSearchCtrl', function($scope, $resource, YoutubeCache){
+universalSearchApp.controller('universalSearchCtrl', function($scope, $resource, YoutubeService){
 
     // Search for keywords in Twitter
     $scope.searchTweet = function() {
@@ -19,24 +19,7 @@ universalSearchApp.controller('universalSearchCtrl', function($scope, $resource,
 
       //YoutubeCache.get(q)
       //YoutubeCache.put(q,$scope.youtubeResults); 
-
-      if( YoutubeCache.get(q) ){
-
-        $scope.youtubeResults = YoutubeCache.get(q);
-        console.log('Resultados retirados do cache. Nenhum requisição foi feita');
-
-      } else {
-
-        $scope.youtube = $resource('https://gdata.youtube.com/feeds/api/videos',
-          {q: q, callback: 'JSON_CALLBACK', alt: 'json'},
-          {get:{method:'JSONP'}});
-
-        $scope.youtubeResults = $scope.youtube.get();
-
-        YoutubeCache.put(q,$scope.youtubeResults); 
-        console.log('Resultados retornados da API do youtube.');
-
-      }
+      $scope.youtubeResults = YoutubeService.get(q);
     }
 
     $scope.playVideo = function(item) {
