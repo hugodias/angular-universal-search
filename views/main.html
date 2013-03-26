@@ -14,6 +14,7 @@
       <ul id="myTab" class="nav nav-tabs">
         <li class="active"><a href="#twitter" data-toggle="tab">Twitter</a></li>
         <li><a href="#youtube" data-toggle="tab" ng-click="searchYoutube()">Youtube</a></li>
+        <li><a href="#flickr" data-toggle="tab" ng-click="searchFlickr()">Flickr</a></li>
       </ul>
       <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="twitter">
@@ -58,6 +59,20 @@
               </td>
             </tr>
           </table>
+        </div>
+        <div class="tab-pane fade" id="flickr">
+          <div class="row-fluid">
+            <ul class="thumbnails">
+               <li class="span4" ng-repeat="foto in flickrResults.photos.photo">
+                <div class="thumbnail">
+                  <img src="http://farm{{foto.farm}}.staticflickr.com/{{foto.server}}/{{foto.id}}_{{foto.secret}}_m.jpg" alt="">
+                  <div class="caption">
+                    <p>{{foto.title}}</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

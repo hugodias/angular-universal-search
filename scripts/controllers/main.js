@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-universalSearchApp.controller('universalSearchCtrl', function($scope, $resource, YoutubeService){
+universalSearchApp.controller('universalSearchCtrl', function($scope, $resource, YoutubeService, FlickrService){
 
     // Search for keywords in Twitter
     $scope.searchTweet = function() {
@@ -16,11 +16,16 @@ universalSearchApp.controller('universalSearchCtrl', function($scope, $resource,
     // Search for keywords in Youtube
     $scope.searchYoutube = function(){
       var q = $scope.searchTerm;
-
-      // See services.js
       $scope.youtubeResults = YoutubeService.get(q);
     }
 
+    // Search for tags in Flickr
+    $scope.searchFlickr = function(){
+        var q = $scope.searchTerm;
+        $scope.flickrResults = FlickrService.get(q);
+    }
+
+    // Play video button
     $scope.playVideo = function(item) {
         var vid = youtube_parser(item.link[0].href);
         $scope.item_title = item.title.$t;
